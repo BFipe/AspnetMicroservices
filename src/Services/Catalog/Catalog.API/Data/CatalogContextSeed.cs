@@ -5,7 +5,7 @@ namespace Catalog.API.Data
 {
     public class CatalogContextSeed
     {
-        public static void SeedData(IMongoCollection<Product> collection) 
+        public static void InsertDefaultData(IMongoCollection<Product> collection) 
         {
             bool exist = collection.Find(p => true).Any();
             if (exist == false)
