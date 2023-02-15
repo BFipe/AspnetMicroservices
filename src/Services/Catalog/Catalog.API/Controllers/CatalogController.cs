@@ -28,16 +28,24 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<IEnumerable<GetProductDto>>> GetAllProducts()
         {
             var products = await _productRepository.GetAllAsync();
-            if (products.Any() == false) return NotFound();
+            if (products.Any() == false)
+            {
+                _logger.LogCritical($"Database does not contains any data");
+                return NotFound();
+            }
             var responce = _mapper.Map<IEnumerable<GetProductDto>>(products);
             return Ok(responce);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<GetProductDto>> GetProductById(string id)
         {
             var product = await _productRepository.GetByIdAsync(id);
-            if (product is null) return NotFound();
+            if (product is null)
+            {
+                _logger.LogInformation($"Product with id {id} not found");
+                return NotFound();
+            }
             var responce = _mapper.Map<GetProductDto>(product);
             return Ok(responce);
         }
@@ -46,7 +54,11 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<IEnumerable<GetProductDto>>> GetProductsByName(string name)
         {
             var products = await _productRepository.GetByNameAsync(name);
-            if (products.Any() == false) return NotFound();
+            if (products.Any() == false)
+            {
+                _logger.LogInformation($"No products are containing name '{name}'");
+                return NotFound();
+            }
             var responce = _mapper.Map<IEnumerable<GetProductDto>>(products);
             return Ok(responce);
         }
@@ -67,7 +79,7 @@ namespace Catalog.API.Controllers
             return Ok(responce);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:length(24)}")]
         public async Task<ActionResult<GetProductDto>> DeleteProduct(string id)
         {
             var responce = await _productRepository.DeleteAsync(id);
