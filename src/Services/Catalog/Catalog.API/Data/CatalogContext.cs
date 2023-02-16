@@ -7,10 +7,10 @@ namespace Catalog.API.Data
     {
         public CatalogContext(IConfiguration configuration)
         {
-            var client = new MongoClient(configuration.GetConnectionString("MongoDb"));
-            var database = client.GetDatabase(configuration.GetValue<string>("DatabaseName"));
+            var client = new MongoClient(Environment.GetEnvironmentVariable("MongoDb"));
+            var database = client.GetDatabase(Environment.GetEnvironmentVariable("DatabaseName"));
 
-            Products = database.GetCollection<Product>(configuration.GetValue<string>("CollectionName"));
+            Products = database.GetCollection<Product>(Environment.GetEnvironmentVariable("CollectionName"));
             CatalogContextSeed.InsertDefaultData(Products);
         }
 
