@@ -9,3 +9,6 @@ services:
       
   mongodb:
     image: mongo
+
+  mongoclient:
+    image: mongoclient/mongoclient
