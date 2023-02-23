@@ -12,8 +12,7 @@ namespace Basket.API
             // Add services to the container.
             builder.Services.AddStackExchangeRedisCache(q => 
             {
-                //q.Configuration = Environment.GetEnvironmentVariable("RedisConnection");
-                q.Configuration = "localhost:6379";
+                q.Configuration = Environment.GetEnvironmentVariable("RedisConnection");
             });
             builder.Services.AddScoped<IBasketRepository, BasketRepository>();
             builder.Services.AddControllers();
