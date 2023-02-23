@@ -7,10 +7,10 @@ services:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
       
-  mongodb:
+  catalog.mongodb:
     image: mongo
 
-  mongoclient:
+  catalog.mongoclient:
     image: mongoclient/mongoclient
 
   basket.api:
@@ -19,5 +19,5 @@ services:
       context: .
       dockerfile: Services/Basket/Basket.API/Dockerfile
   
-  redisdb:
-    image: redis
+  basket.redisdb:
+    image: redis:alpine
