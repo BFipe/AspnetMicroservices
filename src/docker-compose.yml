@@ -21,3 +21,6 @@ services:
   
   basket.redisdb:
     image: redis:alpine
+
+  portainer:
+    image: portainer/portainer-ce

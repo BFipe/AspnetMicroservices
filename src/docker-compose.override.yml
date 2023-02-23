@@ -42,6 +42,16 @@ services:
       - basket.redisdb_data:/data
     restart: always
 
+  portainer:
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    
+
 volumes:
   catalog.mongodb_data: 
   basket.redisdb_data:
+  portainer_data:
