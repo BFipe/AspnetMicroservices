@@ -2,8 +2,9 @@
 {
     public class ShoppingCart
     {
-        public ShoppingCart(string userName = null)
+        public ShoppingCart(string userName)
         {
+            if (String.IsNullOrWhiteSpace(userName)) throw new Exception("Null user name");
             UserName = userName;
         }
 

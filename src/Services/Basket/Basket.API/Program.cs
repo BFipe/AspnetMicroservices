@@ -1,4 +1,5 @@
 using Basket.API.Entities;
+using Basket.API.Repositories;
 
 namespace Basket.API
 {
@@ -6,8 +7,6 @@ namespace Basket.API
     {
         public static void Main(string[] args)
         {
-            ShoppingCart shoppingCart = new();
-
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -16,6 +15,7 @@ namespace Basket.API
                 //q.Configuration = Environment.GetEnvironmentVariable("RedisConnection");
                 q.Configuration = "localhost:6379";
             });
+            builder.Services.AddScoped<IBasketRepository, BasketRepository>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
