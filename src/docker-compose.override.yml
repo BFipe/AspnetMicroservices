@@ -71,12 +71,15 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin1234
     ports:
       - 5433:5433
-    restart: always
+    volumes:
+      - discount.pgadmin_data:/root/.pgadmin
     depends_on:
       - discount.postgresdb
+    restart: always
 
 volumes:
   catalog.mongodb_data: 
   basket.redisdb_data:
   discount.postgres_data:
+  discount.pgadmin_data:
   portainer_data:
