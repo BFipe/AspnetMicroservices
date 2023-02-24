@@ -10,9 +10,6 @@ services:
   catalog.mongodb:
     image: mongo
 
-  catalog.mongoclient:
-    image: mongoclient/mongoclient
-
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
@@ -24,3 +21,15 @@ services:
 
   portainer:
     image: portainer/portainer-ce
+
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.API/Dockerfile
+
+  discount.postgresdb:
+    image: postgres
+
+  discount.pgadmin:
+    image: dpage/pgadmin4

@@ -4,6 +4,11 @@ namespace Discount.API
     {
         public static void Main(string[] args)
         {
+            float fn = 0.0f;
+            int intn = 1;
+
+            var result = fn + intn;
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.

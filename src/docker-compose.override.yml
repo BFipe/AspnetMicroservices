@@ -19,12 +19,7 @@ services:
     volumes:
       - catalog.mongodb_data:/data/db
     restart: always
-
-  catalog.mongoclient:
-    ports: 
-      - 3000:3000
-    restart: always
-      
+    
   basket.api:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
@@ -50,8 +45,38 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     
+  discount.api:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 5002:80
+    depends_on:
+      - discount.postgresdb
+    restart: always
+
+  discount.postgresdb:
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin1212
+      POSTGRES_DB: DiscountDb
+    volumes:
+      - discount.postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    
+  discount.pgadmin:
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin1234
+    ports:
+      - 5433:5433
+    restart: always
+    depends_on:
+      - discount.postgresdb
 
 volumes:
   catalog.mongodb_data: 
   basket.redisdb_data:
+  discount.postgres_data:
   portainer_data:
