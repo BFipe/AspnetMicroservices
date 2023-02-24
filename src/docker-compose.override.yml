@@ -4,7 +4,7 @@ services:
   catalog.api:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      MongoDb: 'catalog.mongodb://catalog.mongodb:27017'
+      MongoDb: 'mongodb://catalog.mongodb:27017'
       DatabaseName: 'ProductDb'
       CollectionName: 'Products'
     ports:
