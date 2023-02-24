@@ -70,7 +70,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@gmail.com
       PGADMIN_DEFAULT_PASSWORD: admin1234
     ports:
-      - 5433:5433
+      - 5431:80
     volumes:
       - discount.pgadmin_data:/root/.pgadmin
     depends_on:
