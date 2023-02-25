@@ -16,7 +16,7 @@ namespace Discount.API.Controllers
             _discountRepository = discountRepository;
         }
 
-        [HttpGet("GetDiscount")]
+        [HttpGet]
         public async Task<ActionResult<Coupon>> GetDiscount(string productName)
         {
             var coupon = await _discountRepository.GetDiscount(productName);
@@ -27,16 +27,16 @@ namespace Discount.API.Controllers
         public async Task<IActionResult> CreateDiscount([FromBody] Coupon coupon)
         {
             var result = await _discountRepository.CreateDiscount(coupon);
-            if (result) return Ok();
-            else return BadRequest(); 
+            if (result) return Ok(await _discountRepository.GetDiscount(coupon.ProductName));
+            else return BadRequest();
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateDiscount([FromBody] Coupon coupon)
         {
             var result = await _discountRepository.UpdateDiscount(coupon);
-            if (result) return Ok();
-            else return BadRequest();
+            if (result) return Ok(coupon);
+            else return NotFound();
         }
 
         [HttpDelete]
@@ -44,7 +44,7 @@ namespace Discount.API.Controllers
         {
             var result = await _discountRepository.DeleteDiscount(productName);
             if (result) return Ok();
-            else return BadRequest();
+            else return NotFound();
         }
     }
 }

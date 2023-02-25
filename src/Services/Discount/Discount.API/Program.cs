@@ -1,10 +1,11 @@
+using Discount.API.Extentions;
 using Discount.API.Repositories;
 
 namespace Discount.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +16,14 @@ namespace Discount.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddLogging();
             builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
             var app = builder.Build();
+
+            var serviceProvider = app.Services;
+            var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+            await DatabaseMigration.MigrateDatabase(serviceProvider, logger);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

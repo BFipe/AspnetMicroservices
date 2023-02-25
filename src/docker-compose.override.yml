@@ -48,6 +48,8 @@ services:
   discount.api:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
+      ConnectionString: Host=discount.postgresdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1212;
+      MaxDatabaseMigrationAttempts: 50
     ports:
       - 5002:80
     depends_on:
