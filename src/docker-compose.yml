@@ -33,3 +33,10 @@ services:
 
   discount.pgadmin:
     image: dpage/pgadmin4
+
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Grpc/Dockerfile
+

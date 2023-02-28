@@ -79,6 +79,17 @@ services:
       - discount.postgresdb
     restart: always
 
+  discount.grpc:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionString: Host=discount.postgresdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1212;
+      MaxDatabaseMigrationAttempts: 50
+    ports:
+      - 5003:80
+    depends_on:
+      - discount.postgresdb
+    restart: always
+
 volumes:
   catalog.mongodb_data: 
   basket.redisdb_data:
