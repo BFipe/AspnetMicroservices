@@ -24,6 +24,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       RedisConnection: basket.redisdb:6379
+      DiscountGrpcUri: http://discount.grpc:80
     ports:
       - 5001:80
     depends_on:

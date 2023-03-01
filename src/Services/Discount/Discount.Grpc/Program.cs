@@ -3,7 +3,7 @@ using Discount.Grpc.Mapper;
 using Discount.Grpc.Repositories;
 using Discount.Grpc.Services;
 
-namespace Company.WebApplication1
+namespace Discount.Grpc
 {
     public class Program
     {
@@ -11,6 +11,7 @@ namespace Company.WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddGrpc();
             builder.Services.AddAutoMapper(typeof(DiscountProfile));
             builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
             var app = builder.Build();
