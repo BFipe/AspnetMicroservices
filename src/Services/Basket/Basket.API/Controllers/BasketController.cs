@@ -19,7 +19,7 @@ namespace Basket.API.Controllers
             _grpcService = grpcService;
         }
 
-        [HttpGet(Name = "GetBasket")]
+        [HttpGet]
         public async Task<ActionResult<ShoppingCart>> GetBasket([FromQuery] string userName)
         {
             if (String.IsNullOrWhiteSpace(userName)) return BadRequest();
@@ -39,7 +39,7 @@ namespace Basket.API.Controllers
             return Ok(result ?? new ShoppingCart(userName));
         }
 
-        [HttpPost(Name = "UpdateBasket")]
+        [HttpPost]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromQuery] string userName, [FromBody] ShoppingCart shoppingCart)
         {
             if (String.IsNullOrWhiteSpace(userName) || userName != shoppingCart.UserName) return BadRequest();
