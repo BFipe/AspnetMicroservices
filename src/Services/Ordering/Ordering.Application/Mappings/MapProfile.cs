@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Ordering.Application.Features.Orders.Queries.GetOrderssList;
+using Ordering.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace Ordering.Application.Mappings
     {
         public MapProfile()
         {
-            CreateMap<string, string>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap() ;
         }
     }
 }
