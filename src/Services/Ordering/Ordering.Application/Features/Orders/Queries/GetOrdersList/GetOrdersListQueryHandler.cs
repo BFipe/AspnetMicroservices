@@ -3,7 +3,7 @@ using MediatR;
 using Ordering.Application.Contracts.Persistence;
 using Ordering.Application.Exceptions;
 
-namespace Ordering.Application.Features.Orders.Queries.GetOrderssList
+namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, List<OrderDto>>
     {

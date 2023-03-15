@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.Application.Features.Orders.Queries.GetOrderssList
+namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     public class GetOrdersListQuery : IRequest<List<OrderDto>>
     {
         public string UserName { get; set; }
+        public GetOrdersListQuery(string userName)
+        {
+            UserName = userName;
+        }
     }
 }

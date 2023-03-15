@@ -1,4 +1,4 @@
-﻿namespace Ordering.Application.Features.Orders.Queries.GetOrderssList
+﻿namespace Ordering.Application.Features.Orders.Queries.GetOrdersList
 {
     public class OrderDto
     {
