@@ -19,6 +19,9 @@ namespace Discount.API
             builder.Services.AddLogging();
             builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
+            //builder.Services.AddApplicationServices();
+            //builder.Services.AddInfrastructureServices();
+
             var app = builder.Build();
 
             var serviceProvider = app.Services;
